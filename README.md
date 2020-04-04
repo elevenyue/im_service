@@ -4,7 +4,7 @@
 * 原项目由GoPkg 迁移到go.mod 包管理 兼容最新的go语言规范（原项目因为历史原因使用GoPkg）
 * 抽象迁移出core包.以解决无法debug的问题。抽象出route 接口，client接口（原项目因为历史原因使用struct结构体 而不是interface接口）
 * 免除make 操作，im,imr,ims 均可支持debug调试和go run 命令
-* 分包更明确，利于docker 容器打包，调试，部署
+* 分包更明确，可兼容docker file容器打包，调试，部署、方便集成于k8s等容器环境
 
 TODO 即将到来的特性
 * rpc使用google grpc，降低序列化开销，支持跨语言调用(想必需要很多异构语言Java(服务端,安卓),nodejs(网页前端),go,oc(IOS端),dart(flutter客户端))
