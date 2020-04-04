@@ -17,6 +17,16 @@ TODO 即将到来的特性
 
 *服务器硬件指标：32g 16核*
 
+
+
+## docker 部署数据库
+```shell script
+docker run -p 6379:6379 --name redis -d redis redis-server --appendonly yes
+docker run -p 3306:3306 --name mysql5.7 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7
+```
+
+
+
 ## 编译运行
 
 1. 安装go编译环境
