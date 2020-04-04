@@ -7,9 +7,6 @@
 * 免除make 操作，im,imr,ims 均可支持debug调试和go run 命令
 * 分包更明确，可兼容docker file容器打包，调试，部署、方便集成于k8s等容器环境
 
-TODO 即将到来的特性
-* rpc使用google grpc，降低序列化开销，支持跨语言调用(想必需要很多异构语言Java(服务端,安卓),nodejs(网页前端),go,oc(IOS端),dart(flutter客户端))
-
 # im service
 1. 支持点对点消息, 群组消息, 聊天室消息
 2. 支持集群部署
