@@ -3,6 +3,7 @@
 更改
 * 原项目由GoPkg 迁移到go.mod 包管理 兼容最新的go语言规范（原项目因为历史原因使用GoPkg）
 * 抽象迁移出core包.以解决无法debug的问题。抽象出route 接口，client接口（原项目因为历史原因使用struct结构体 而不是interface接口）
+* core包属性均改为首字母大写，方便异包调用
 * 免除make 操作，im,imr,ims 均可支持debug调试和go run 命令
 * 分包更明确，可兼容docker file容器打包，调试，部署、方便集成于k8s等容器环境
 
