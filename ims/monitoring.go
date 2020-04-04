@@ -1,4 +1,4 @@
-package main
+package ims
 
 import "net/http"
 import "encoding/json"

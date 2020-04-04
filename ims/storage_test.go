@@ -1,4 +1,4 @@
-package main
+package ims
 
 import (
 	"github.com/GoBelieveIO/im_service/core"
