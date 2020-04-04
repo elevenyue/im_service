@@ -44,22 +44,15 @@ docker run -p 3306:3306 --name mysql5.7 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5
 
    go mod download
 
-4. 编译
 
-   cd im_service
-    
-   mkdir bin
-    
-   make install
-    
-   可执行程序在bin目录下
 
-5. 安装mysql数据库, redis, 并导入db.sql
+4. 安装mysql数据库, redis, 并导入db.sql
 
-6. 配置程序
+5. 配置程序
    配置项的说明参考ims.cfg.sample, imr.cfg.sample, im.cfg.sample
 
-7. 启动程序
+
+6. 启动程序
 
   * 创建配置文件中配置的im&ims消息存放路径
 
@@ -76,16 +69,12 @@ docker run -p 3306:3306 --name mysql5.7 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5
     mkdir /data/logs/im
 
   * 启动im服务
-
-    pushd \`dirname $0\` > /dev/null
-
-    BASEDIR=\`pwd\`
-
-    nohup $BASEDIR/ims -log_dir=/data/logs/ims ims.cfg >/data/logs/ims/ims.log 2>&1 &
-
-    nohup $BASEDIR/imr -log_dir=/data/logs/imr imr.cfg >/data/logs/imr/imr.log 2>&1 &
-
-    nohup $BASEDIR/im -log_dir=/data/logs/im im.cfg >/data/logs/im/im.log 2>&1 &
+   运行debug (如果是goland 执行的话，需要点debug按钮左边的edit配置，program arg 那栏添加参数 例如 -log_dir=xxx   imr.cfg.sample)
+   或者使用go命令运行
+   go run imr.go -log_dir=/data/logs/imr   imr.cfg.sample
+   go run ims.go -log_dir=/data/logs/ims   ims.cfg.sample
+   go run im.go  -log_dir=/data/logs/im   im.cfg.sample 
+   
 
 
 ## token的格式
