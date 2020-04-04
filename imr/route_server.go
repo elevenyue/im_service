@@ -17,7 +17,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-package main
+package imr
 
 import (
 	"github.com/GoBelieveIO/im_service/core"
@@ -201,7 +201,7 @@ func StartHttpServer(addr string) {
 	}
 }
 
-func main() {
+func Run() {
 	fmt.Printf("Version:     %s\nBuilt:       %s\nGo version:  %s\nGit branch:  %s\nGit commit:  %s\n", VERSION, BUILD_TIME, GO_VERSION, GIT_BRANCH, GIT_COMMIT_ID)
 
 	rand.Seed(time.Now().UnixNano())
