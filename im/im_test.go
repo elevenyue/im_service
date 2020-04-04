@@ -1,4 +1,4 @@
-package main
+package im
 
 import (
 	"github.com/GoBelieveIO/im_service/core"

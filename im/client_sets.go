@@ -1,4 +1,4 @@
-package main
+package im
 
 type ClientSet map[*Client]struct{}
 
