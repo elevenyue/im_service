@@ -69,11 +69,13 @@ docker run -p 3306:3306 --name mysql5.7 -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5
     mkdir /data/logs/im
 
   * 启动im服务
-   运行debug (如果是goland 执行的话，需要点debug按钮左边的edit配置，program arg 那栏添加参数 例如 -log_dir=xxx   imr.cfg.sample)
+   运行debug (GoLand 执行的话，需要点debug按钮左边的edit配置，program arg 那栏添加参数 例如 -log_dir=xxx   imr.cfg.sample)
    或者使用go命令运行
+   ```shell script
    go run imr.go -log_dir=/data/logs/imr   imr.cfg.sample
    go run ims.go -log_dir=/data/logs/ims   ims.cfg.sample
    go run im.go  -log_dir=/data/logs/im   im.cfg.sample 
+   ```
    
 
 
