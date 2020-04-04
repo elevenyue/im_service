@@ -17,7 +17,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-package main
+package ims
 
 import "os"
 import "fmt"
@@ -42,7 +42,7 @@ func checkRoot(root string) {
 	for _, f := range files {
 		base := filepath.Base(f)
 		if strings.HasPrefix(base, "message_") {
-			if !checkFile(f) {
+			if !CheckFile(f) {
 				log.Warning("check file failure")
 				r := truncateFile(f)
 				log.Info("truncate file:", r)
@@ -119,7 +119,7 @@ func IsDir(path string) bool {
 	return s.IsDir()
 }
 
-func main() {
+func RunTruncate() {
 	flag.Parse()
 
 	if len(root) == 0 {

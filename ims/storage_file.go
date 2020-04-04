@@ -73,7 +73,7 @@ func NewStorageFile(root string) *StorageFile {
 	for _, f := range files {
 		base := filepath.Base(f)
 		if strings.HasPrefix(base, "message_") {
-			if !checkFile(f) {
+			if !CheckFile(f) {
 				log.Fatal("check file failure")
 			} else {
 				log.Infof("check file pass:%s", f)
@@ -95,7 +95,7 @@ func NewStorageFile(root string) *StorageFile {
 }
 
 //校验文件结尾是否合法
-func checkFile(file_path string) bool {
+func CheckFile(file_path string) bool {
 	file, err := os.Open(file_path)
 	if err != nil {
 		log.Fatal("open file:", err)
