@@ -69,7 +69,7 @@ func NewGroupMessageDeliver(root string) *GroupMessageDeliver {
 
 	storage.root = root
 	if _, err := os.Stat(root); os.IsNotExist(err) {
-		err = os.Mkdir(root, 0755)
+		err = os.MkdirAll(root, 0755)
 		if err != nil {
 			log.Fatal("mkdir err:", err)
 		}
