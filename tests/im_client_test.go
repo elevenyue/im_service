@@ -4,18 +4,27 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/GoBelieveIO/im_service/core"
+	"github.com/gomodule/redigo/redis"
 	"net"
 	"testing"
 	"time"
 )
 
-// 需要redis 插入string数据结构     key:  devices_87c6f75ef5d3a93d_2       value:1
-// 需要redis 插入string数据结构     key:  devices_id                       value:1
+//请修改redisURL为redis服务器地址
 func TestClient(t *testing.T) {
 	if true {
 		fmt.Println("you need disable this code")
 		return
 	}
+	//init
+	var redisUrl = "127.0.0.1:6379"
+	c, e := redis.Dial("tcp", redisUrl)
+	if e != nil {
+		t.Fatal(e)
+	}
+	c.Do("SET", "devices_87c6f75ef5d3a93d_2", 1)
+	c.Do("SET", "devices_id", 1)
+
 	conn, e := net.Dial("tcp", "127.0.0.1:23000")
 	if e != nil {
 		t.Fatal(e)
