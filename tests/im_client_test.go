@@ -9,8 +9,8 @@ import (
 	"time"
 )
 
-// 需要redis 插入     key:  devices_87c6f75ef5d3a93d_2       value:1
-// 需要redis 插入     key:  devices_id                       value:1
+// 需要redis 插入string数据结构     key:  devices_87c6f75ef5d3a93d_2       value:1
+// 需要redis 插入string数据结构     key:  devices_id                       value:1
 func TestClient(t *testing.T) {
 	if true {
 		fmt.Println("you need disable this code")
