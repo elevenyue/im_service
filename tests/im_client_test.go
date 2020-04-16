@@ -2,8 +2,8 @@ package tests
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/GoBelieveIO/im_service/core"
-	"github.com/satori/go.uuid"
 	"net"
 	"testing"
 	"time"
@@ -11,6 +11,7 @@ import (
 
 func TestClient(t *testing.T) {
 	if true {
+		fmt.Println("you need disable this code")
 		return
 	}
 	conn, e := net.Dial("tcp", "127.0.0.1:23000")
@@ -50,8 +51,6 @@ func TestClient(t *testing.T) {
 		}
 	}
 
-	var uuid = uuid.NewV4()
-
 	msg = core.Message{
 		Cmd:     4,
 		Seq:     29,
@@ -62,7 +61,7 @@ func TestClient(t *testing.T) {
 			Receiver:  2,
 			Timestamp: 0,
 			Msgid:     66,
-			Content:   "{\"text\":\"test_client2\",\"uuid\":\"" + uuid.String() + "\"}",
+			Content:   "{\"text\":\"test_client3\",\"uuid\":\"d4ee8dd0-a1f4-4018-b261-5c7498a3244c\"}",
 		},
 		Meta: nil,
 	}
