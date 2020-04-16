@@ -22,6 +22,7 @@ func TestClient(t *testing.T) {
 	if e != nil {
 		t.Fatal(e)
 	}
+	defer c.Close()
 	c.Do("SET", "devices_87c6f75ef5d3a93d_2", 1)
 	c.Do("SET", "devices_id", 1)
 
@@ -29,6 +30,7 @@ func TestClient(t *testing.T) {
 	if e != nil {
 		t.Fatal(e)
 	}
+	defer conn.Close()
 
 	var body = core.AuthenticationToken{
 		Token:      "PGlmvljmmKj7thrNWPu6zWRGKXPWo6",
@@ -87,11 +89,10 @@ func TestClient(t *testing.T) {
 		if message != nil {
 			var s, _ = json.Marshal(*message)
 			println(string(s))
-			println("done")
 			break
 		} else {
 			time.Sleep(time.Second)
 		}
 	}
-
+	println("done")
 }
