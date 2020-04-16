@@ -2,21 +2,16 @@ package tests
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/GoBelieveIO/im_service/core"
 	"github.com/gomodule/redigo/redis"
+	"math/rand"
 	"net"
+	"sync"
 	"testing"
 	"time"
 )
 
-//请修改redisURL为redis服务器地址
-func TestClient(t *testing.T) {
-	if true {
-		fmt.Println("you need disable this code")
-		return
-	}
-	//init
+func TestInitRedis(t *testing.T) {
 	var redisUrl = "127.0.0.1:6379"
 	c, e := redis.Dial("tcp", redisUrl)
 	if e != nil {
@@ -25,7 +20,25 @@ func TestClient(t *testing.T) {
 	defer c.Close()
 	c.Do("SET", "devices_87c6f75ef5d3a93d_2", 1)
 	c.Do("SET", "devices_id", 1)
+}
 
+func TestClientMany(t *testing.T) {
+	var w = sync.WaitGroup{}
+	for i := 0; i < 10000; i++ {
+		time.Sleep(time.Millisecond)
+		w.Add(i)
+		go func() {
+			TestClient(t)
+			w.Done()
+		}()
+	}
+	w.Wait()
+	println("All Done!")
+}
+
+//请先修改redisURL为redis服务器地址,并且执行 TestInitRedis 插入初始化数据
+func TestClient(t *testing.T) {
+	//init
 	conn, e := net.Dial("tcp", "127.0.0.1:23000")
 	if e != nil {
 		t.Fatal(e)
@@ -61,12 +74,13 @@ func TestClient(t *testing.T) {
 			break
 		} else {
 			time.Sleep(time.Second)
+			println("loading...")
 		}
 	}
 
 	msg = core.Message{
 		Cmd:     4,
-		Seq:     29,
+		Seq:     rand.Intn(100000),
 		Version: 1,
 		Flag:    0,
 		Body: &core.IMMessage{
@@ -84,15 +98,16 @@ func TestClient(t *testing.T) {
 	}
 
 	//var message *core.Message
-	for {
-		message = core.ReceiveMessage(conn)
-		if message != nil {
-			var s, _ = json.Marshal(*message)
-			println(string(s))
-			break
-		} else {
-			time.Sleep(time.Second)
-		}
-	}
-	println("done")
+	//for {
+	//	message = core.ReceiveMessage(conn)
+	//	if message != nil {
+	//		var s, _ = json.Marshal(*message)
+	//		println(string(s))
+	//		break
+	//	} else {
+	//		time.Sleep(time.Second)
+	//		println("loading...")
+	//	}
+	//}
+	//println("done")
 }
